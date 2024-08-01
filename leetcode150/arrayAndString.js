@@ -15,7 +15,7 @@ function merge(nums1, m, nums2, n) {
   }
 }
 
-// BigO: O(n)
+// Time: O(n)
 // Linear time as we are inserting in values
 //Space: O(1)
 
@@ -30,7 +30,7 @@ function removeElement(nums, val) {
   return nums.length;
 }
 
-// BigO: O(n)
+// Time: O(n)
 // Linear time as we are removing values
 //Space: O(1)
 
@@ -45,7 +45,7 @@ function removeDuplicates(nums) {
   }
   return nums.length;
 }
-// BigO: O(n)
+// Time: O(n)
 // Linear time as we are removing values
 //Space: O(1)
 
@@ -63,7 +63,7 @@ function majorityElement(nums) {
     }
   })[0];
 }
-// BigO: O(n)
+// Time: O(n)
 // Linear time as we are removing values
 //Space: O(1)
 
@@ -75,7 +75,7 @@ function lengthOfLastWord(s) {
     .filter((word) => word !== "")
     .pop().length;
 }
-// BigO: O(n)
+// Time: O(n)
 // Linear time as we are removing values
 //Space: O(1)
 
@@ -88,7 +88,7 @@ function reverseWords(s) {
     .reverse()
     .join(" ");
 }
-// BigO: O(n)
+// Time: O(n)
 // Linear time as we are removing values
 //Space: O(1)
 
@@ -110,5 +110,23 @@ function removeDuplicates(nums) {
   }
   return nums.length;
 }
-// BigO: O(n^2) since theres two nested loops
+// Time: O(n^2) since theres two nested loops
 // Time: O(1)
+
+// 189. Rotate Array
+function rotateArray(nums, k) {
+  k = k % nums.length;
+  if (nums.length > k) {
+    nums.unshift(...nums.splice(-1));
+  } else {
+    while (k > 0) {
+      nums.unshift(nums.pop());
+      k--;
+    }
+  }
+  return nums;
+}
+
+// Time: O(n)
+// Linear time as we are removing values
+//Space: O(1)
