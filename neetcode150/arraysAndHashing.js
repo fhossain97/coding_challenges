@@ -107,3 +107,32 @@ function topKFrequent(nums, k) {
 
 // Time: O(n) - we iterate through the nums arr once
 // Space: O(n) - we insert the result in an arr and size of the map and the new arr are proportional to number of elements in num arr
+
+//String Encode and Decode
+function encode(strs) {
+  let string = "";
+  strs.forEach((str) => (string += `${str.length}@${str}`));
+  return string;
+}
+
+// Decode
+function decode(str) {
+  let i = 0;
+  const result = [];
+
+  while (i < str.length) {
+    let j = i;
+    while (str[j] !== "@") {
+      j++;
+    }
+    let length = parseInt(str.substring(i, j));
+    i = j + 1;
+    j = i + length;
+    result.push(str.substring(i, j));
+    i = j;
+  }
+  return result;
+}
+
+// Time: O(n)
+// Space: O(n)
