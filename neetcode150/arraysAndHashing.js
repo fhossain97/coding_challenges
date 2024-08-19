@@ -58,3 +58,52 @@ function twoSum(nums, target) {
 
 // Time: O(n)
 // Space: 0(n)
+
+// Anagram Groups
+
+function groupAnagrams(strs) {
+  let hashMap = {};
+  const base = "a".charCodeAt(0);
+  for (const string of strs) {
+    const arr = Array(26).fill(0);
+    for (const l of string) {
+      const letter = l.charCodeAt(0);
+      arr[letter - base]++;
+    }
+    const key = arr.join(",");
+    if (!hashMap[key]) {
+      hashMap[key] = [];
+    }
+    hashMap[key].push(string);
+  }
+
+  return Object.values(hashMap);
+}
+
+// Time: O(n^2) or O(n*m)
+// n is the number of strings in the input array and m is the average length of each string
+// Space: O(n)
+
+// Top K Elements in List
+function topKFrequent(nums, k) {
+  const map = {};
+  const result = [];
+  nums.forEach((num) => (map[num] = (map[num] || 0) + 1));
+  const arr = Array.from({ length: nums.length + 1 }, () => []);
+
+  for (const n in map) {
+    arr[map[n]].push(parseInt(n));
+  }
+
+  for (let i = arr.length - 1; i > 0; i--) {
+    for (const n of arr[i]) {
+      result.push(n);
+      if (result.length === k) {
+        return result;
+      }
+    }
+  }
+}
+
+// Time: O(n) - we iterate through the nums arr once
+// Space: O(n) - we insert the result in an arr and size of the map and the new arr are proportional to number of elements in num arr
